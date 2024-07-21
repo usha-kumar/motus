@@ -1,0 +1,24 @@
+<div class="game-container">
+  <h2>Motus</h2>
+  <div class="word-grid">
+    <div *ngFor="let attempt of attempts; let i = index" class="word-row">
+      <span
+            [ngClass]="{
+              'correct': feedback[i] === 'correct',
+              'misplaced': feedback[i] === 'misplaced',
+              'incorrect': feedback[i] === 'incorrect'
+            }">
+        {{ attempt }}
+      </span>
+    </div>
+  </div>
+  <input [(ngModel)]="currentGuess" 
+         [disabled]="completed" 
+         (keyup.enter)="makeGuess()" 
+         maxlength="1">
+  <button (click)="makeGuess()" [disabled]="completed">Guess</button>
+  <p *ngIf="completed">
+    {{ won ? 'Congratulations! You won!' : 'Game over. Try again.' }}
+  </p>
+  <button (click)="startNewGame()">New Game</button>
+</div>

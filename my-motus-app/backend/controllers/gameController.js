@@ -13,7 +13,7 @@ exports.startGame = async (req, res) => {
 };
 
 exports.makeGuess = async (req, res) => {
-  const { motsId, guess, word } = req.body;
+  const { motsId, guess } = req.body;
   const mots = await Mots.findOne(motsId);
   if (!mots || mots.completed) {
     return res.status(400).json({ message: 'Invalid mots' });
